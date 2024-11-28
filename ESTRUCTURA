@@ -1,0 +1,11 @@
+app/
+│
+├── static/
+├── templates/
+│   ├── index.html
+│   ├── add_product.html
+│   ├── product_list.html
+│   └── sales.html
+│
+├── app.py
+└── database.db
