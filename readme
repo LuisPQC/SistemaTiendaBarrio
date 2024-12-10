@@ -1,3 +1,5 @@
-readme.text
-
-lk
+librerias nesesarias:
+pdfkit
+reportlab
+flask-wtf
+flask-sqlalchemy
