@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Nuevo Producto{% endblock %}
+{% block content %}
+<h1>Nuevo Producto</h1>
+<form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+        {{ form.nombre.label(class="form-label") }}
+        {{ form.nombre(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.cantidad.label(class="form-label") }}
+        {{ form.cantidad(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.precio.label(class="form-label") }}
+        {{ form.precio(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.categoria_id.label(class="form-label") }}
+        {{ form.categoria_id(class="form-select") }}
+    </div>
+    <button type="submit" class="btn btn-primary">{{ form.submit.label }}</button>
+</form>
+<a href="{{ url_for('index') }}" class="btn btn-secondary mt-3">Volver</a>
+{% endblock %}

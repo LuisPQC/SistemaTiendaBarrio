@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Inventario{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Inventario</h1>
+    <!-- Botón para descargar el reporte de inventario en PDF -->
+    <a href="{{ url_for('descargar_reporte_pdf') }}" class="btn btn-success align-right">Descargar Reporte en PDF</a>
+
+    
+    <!-- Mostrar categorías -->
+    <h3>Categorías</h3>
+    <div class="mb-4">
+        {% for categoria in categorias %}
+            <span class="badge rounded-pill bg-primary p-3">{{ categoria.nombre }}</span>
+        {% endfor %}
+    </div>
+
+    <!-- Tabla de productos -->
+    <h3>Productos</h3>
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Categoría</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in productos %}
+                <tr>
+                    <td>{{ producto.id }}</td>
+                    <td>{{ producto.nombre }}</td>
+                    <td>{{ producto.cantidad }}</td>
+                    <td>${{ producto.precio }}</td>
+                    <td>{{ producto.categoria.nombre }}</td>
+                    <td>{{ producto.fecha.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                    <td>
+                        <a href="{{ url_for('editar_producto', id=producto.id) }}" class="btn btn-warning">Editar</a>
+                <a href="{{ url_for('eliminar_producto', id=producto.id) }}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6" class="text-center">No hay productos registrados.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Botones para añadir -->
+    <div class="mt-4">
+        <a href="{{ url_for('nueva_categoria') }}" class="btn btn-primary">Nueva Categoría</a>
+        <a href="{{ url_for('nuevo_producto') }}" class="btn btn-success">Nuevo Producto</a>
+    </div>
+</div>
+{% endblock %}
